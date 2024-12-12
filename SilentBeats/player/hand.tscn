@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://da8735kk3ters"]
+
+[ext_resource type="Script" path="res://player/hand.gd" id="1_0sunj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w5k0n"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.4
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wir3l"]
+margin = 0.005
+radius = 0.01
+height = 0.4
+
+[node name="Hand" type="XRController3D"]
+tracker = &"left_hand"
+pose = &"hand_pose"
+script = ExtResource("1_0sunj")
+
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+
+[node name="DrumStickBody" type="CharacterBody3D" parent="Anchor"]
+
+[node name="Drumstick" type="MeshInstance3D" parent="Anchor/DrumStickBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_w5k0n")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/DrumStickBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_wir3l")

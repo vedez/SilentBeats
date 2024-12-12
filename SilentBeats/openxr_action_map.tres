@@ -1,0 +1,39 @@
+[gd_resource type="OpenXRActionMap" load_steps=8 format=3 uid="uid://c6a0uk0bembnv"]
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_rb0h8"]
+resource_name = "hand_pose"
+localized_name = "Default pose"
+action_type = 3
+toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_pmhyo"]
+resource_name = "haptic"
+localized_name = "Haptic"
+action_type = 4
+
+[sub_resource type="OpenXRAction" id="OpenXRAction_blqrq"]
+resource_name = "pose_recenter"
+localized_name = "Centers the player in the scene"
+action_type = 0
+toplevel_paths = PackedStringArray("/user/hand/right", "/user/hand/left")
+
+[sub_resource type="OpenXRActionSet" id="OpenXRActionSet_p0vr3"]
+resource_name = "godot"
+localized_name = "Godot action set"
+actions = [SubResource("OpenXRAction_rb0h8"), SubResource("OpenXRAction_pmhyo"), SubResource("OpenXRAction_blqrq")]
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_fdwn4"]
+action = SubResource("OpenXRAction_blqrq")
+paths = PackedStringArray("/user/hand/right/input/b/click", "/user/hand/left/input/y/click")
+
+[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_k4c5b"]
+action = SubResource("OpenXRAction_rb0h8")
+paths = PackedStringArray("/user/hand/left/input/aim/pose", "/user/hand/right/input/aim/pose")
+
+[sub_resource type="OpenXRInteractionProfile" id="OpenXRInteractionProfile_mdg1i"]
+interaction_profile_path = "/interaction_profiles/oculus/touch_controller"
+bindings = [SubResource("OpenXRIPBinding_fdwn4"), SubResource("OpenXRIPBinding_k4c5b")]
+
+[resource]
+action_sets = [SubResource("OpenXRActionSet_p0vr3")]
+interaction_profiles = [SubResource("OpenXRInteractionProfile_mdg1i")]

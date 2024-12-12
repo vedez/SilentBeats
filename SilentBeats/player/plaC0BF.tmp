@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://yr107xxwayny"]
+
+[ext_resource type="Script" path="res://player/hand.gd" id="1_8wrw8"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_frlpo"]
+[ext_resource type="PackedScene" uid="uid://rt0ejyp01gl4" path="res://effects/black_out.tscn" id="2_y512s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8aure"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Player" type="XROrigin3D"]
+script = ExtResource("1_frlpo")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="BlackOut" parent="XRCamera3D" instance=ExtResource("2_y512s")]
+
+[node name="LeftHand" type="XRController3D" parent="."]
+tracker = &"left_hand"
+pose = &"hand_pose"
+script = ExtResource("1_8wrw8")
+
+[node name="Test" type="MeshInstance3D" parent="LeftHand"]
+mesh = SubResource("BoxMesh_8aure")
+
+[node name="RightHand" type="XRController3D" parent="."]
+tracker = &"right_hand"
+pose = &"hand_pose"
+script = ExtResource("1_8wrw8")
+
+[node name="Test" type="MeshInstance3D" parent="RightHand"]
+mesh = SubResource("BoxMesh_8aure")
+skeleton = NodePath("../../LeftHand/Test")
+
+[connection signal="pose_recentered" from="LeftHand" to="." method="pose_recentered"]
+[connection signal="button_pressed" from="RightHand" to="RightHand" method="_on_button_pressed"]
+[connection signal="pose_recentered" from="RightHand" to="." method="pose_recentered"]

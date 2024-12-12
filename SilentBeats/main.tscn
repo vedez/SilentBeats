@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://2sm3wt8rks1u"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_04ay7"]
+[ext_resource type="Script" path="res://start_vr.gd" id="1_amid5"]
+[ext_resource type="PackedScene" uid="uid://yr107xxwayny" path="res://player/player.tscn" id="2_52h17"]
+[ext_resource type="PackedScene" uid="uid://cgifxso0tcsto" path="res://instruments/tom_drum.tscn" id="4_6fdw2"]
+[ext_resource type="PackedScene" uid="uid://bbtr6g4bnfu7c" path="res://instruments/floor_tom_drum.tscn" id="5_k7lb5"]
+[ext_resource type="PackedScene" uid="uid://bfw74mmss248e" path="res://instruments/snare_drum.tscn" id="6_jwsjr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjqb0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_m7rmp"]
+sky_material = SubResource("ProceduralSkyMaterial_rjqb0")
+
+[sub_resource type="Environment" id="Environment_jt3yn"]
+background_mode = 2
+sky = SubResource("Sky_m7rmp")
+ambient_light_color = Color(0.331019, 0.331019, 0.331019, 1)
+ambient_light_sky_contribution = 0.25
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0kfu"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_04ay7")
+
+[node name="StartVR" type="Node" parent="."]
+script = ExtResource("1_amid5")
+maximum_refresh_rate = 120
+
+[node name="RecenterTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.934962, -0.307221, 0.177374, -1.13395e-08, 0.5, 0.866026, -0.354748, -0.809701, 0.467481, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jt3yn")
+
+[node name="Player" parent="." instance=ExtResource("2_52h17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.84652)
+mesh = SubResource("BoxMesh_v0kfu")
+
+[node name="TomDrum01" parent="." instance=ExtResource("4_6fdw2")]
+transform = Transform3D(0.984808, 0.0301537, 0.17101, 0, 0.984807, -0.173648, -0.173648, 0.17101, 0.969846, -0.26, 0.494557, -0.925)
+
+[node name="TomDrum02" parent="." instance=ExtResource("4_6fdw2")]
+transform = Transform3D(0.984808, -0.0301537, -0.17101, 0, 0.984807, -0.173648, 0.173648, 0.17101, 0.969846, 0.26, 0.494557, -0.925)
+
+[node name="FloorTomDrum" parent="." instance=ExtResource("5_k7lb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52, 0.349557, -0.5)
+
+[node name="SnareDrum" parent="." instance=ExtResource("6_jwsjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, 0.400557, -0.5)
+
+[connection signal="focus_gained" from="StartVR" to="." method="_on_start_vr_focus_gained"]
+[connection signal="focus_lost" from="StartVR" to="." method="_on_start_vr_focus_lost"]
+[connection signal="pose_recentered" from="StartVR" to="Player" method="pose_recentered"]
+[connection signal="timeout" from="RecenterTimer" to="Player" method="pose_recentered"]

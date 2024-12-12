@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfw74mmss248e"]
+
+[ext_resource type="PackedScene" uid="uid://dv61cfyg2yw5b" path="res://instruments/instrument.tscn" id="1_msbnj"]
+[ext_resource type="AudioStream" uid="uid://wbpige8nuqo8" path="res://sounds/snare-drum.wav" id="2_k7gc8"]
+
+[sub_resource type="Curve" id="Curve_6h8cn"]
+min_value = -80.0
+max_value = 80.0
+_data = [Vector2(0, -63.1153), 0.0, 310.882, 0, 0, Vector2(0.998773, 80), -9.71496, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnbpl"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.15
+rings = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7neni"]
+height = 0.05
+radius = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_243xs"]
+height = 0.131078
+radius = 0.26
+
+[node name="SnareDrum" instance=ExtResource("1_msbnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+strike_sound = ExtResource("2_k7gc8")
+strike_volume_curve = SubResource("Curve_6h8cn")
+
+[node name="DrumMesh" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("CylinderMesh_vnbpl")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76241e-05, 0)
+shape = SubResource("CylinderShape3D_7neni")
+
+[node name="OuterBody" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterBody" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0560659, 0)
+shape = SubResource("CylinderShape3D_243xs")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://yr107xxwayny"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_frlpo"]
+[ext_resource type="PackedScene" uid="uid://rt0ejyp01gl4" path="res://effects/black_out.tscn" id="2_y512s"]
+[ext_resource type="PackedScene" uid="uid://da8735kk3ters" path="res://player/hand.tscn" id="3_yllr5"]
+
+[node name="Player" type="XROrigin3D"]
+script = ExtResource("1_frlpo")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="BlackOut" parent="XRCamera3D" instance=ExtResource("2_y512s")]
+
+[node name="PressToCenter" type="Label3D" parent="XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+shaded = true
+no_depth_test = true
+render_priority = -98
+outline_render_priority = -99
+text = "Press B/Y to center"
+
+[node name="LeftHand" parent="." instance=ExtResource("3_yllr5")]
+
+[node name="RightHand" parent="." instance=ExtResource("3_yllr5")]
+tracker = &"right_hand"
+pose = &"default"
+
+[connection signal="button_pressed" from="LeftHand" to="LeftHand" method="_on_button_pressed"]
+[connection signal="pose_recentered" from="LeftHand" to="." method="pose_recentered"]
+[connection signal="button_pressed" from="RightHand" to="RightHand" method="_on_button_pressed"]
+[connection signal="pose_recentered" from="RightHand" to="." method="pose_recentered"]
