@@ -13,6 +13,10 @@ Class Group: TU858
 
 # Instructions
 ## Set Up
+```
+1. Download App File 
+2. 
+```
 
 
 ## User Manual
@@ -33,6 +37,7 @@ Class Group: TU858
 * [Dev stream 52 - Bastiaan Oli](https://www.youtube.com/watch?v=7DbEAYtc2gQ)
 * [Drum Basic Information](https://www.loudlandsmusic.com/blog/the-essentials-for-beginner-drummers)
 * [Github VR Script](https://github.com/godotengine/godot-demo-projects/pull/977/files)
+* [Drum Combinations](https://www.drumeo.com/beat/13-easy-beginner-drum-beats/)
 
 # What I am most proud of in the assignment
 
