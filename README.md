@@ -52,14 +52,14 @@ The user can turn on or off an in game metronome and set the BPM to what they wi
 * [Drum Combinations](https://www.drumeo.com/beat/13-easy-beginner-drum-beats/)
 
 # What I am most proud of in the assignment
-I enjoyed making the environment/universe for the game, it was very interesting to create a world using models.
+**I enjoyed making the environment/universe for the game, it was very interesting to create a world using models.**
 ![Environment](https://github.com/user-attachments/assets/f1f1cfbd-8da6-46d7-828b-e5189a446a39)
 
-I also liked utilising the mushrooms for the drums in order to create a more visual practice space.
+**I also liked utilising the mushrooms for the drums in order to create a more visual practice space.**
 ![DrumSticks/Drums](https://github.com/user-attachments/assets/286934a0-2720-4cc6-bb32-a87951758568)
 ![Drums](https://github.com/user-attachments/assets/878f7543-3ef9-4c36-a21a-97f58ab2c268)
 
-Lastly, the frog I added as a small easter egg with a sound cue.
+**Lastly, the frog I added as a small easter egg with a sound cue.**
 ![NootNootFrog](https://github.com/user-attachments/assets/7d02520d-79ea-420d-be07-94e64c950628)
 
 # What I learned
