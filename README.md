@@ -9,8 +9,8 @@ Student Number: C20305696
 Class Group: TU858
 
 ## Project Demo
-[![YT DEMO: VR Drums](https://www.youtube.com/watch?v=mE1VXZtNNac)
-[GameSnippet](https://github.com/user-attachments/assets/84bf5da6-dc38-42b1-a386-40f37aeb0bea)
+[YT DEMO: VR Drums](https://www.youtube.com/watch?v=mE1VXZtNNac)
+[![GameSnippet](https://github.com/user-attachments/assets/84bf5da6-dc38-42b1-a386-40f37aeb0bea)
 
 
 # Instructions
