@@ -9,15 +9,15 @@ Student Number: C20305696
 Class Group: TU858
 
 ## Project Demo
-[![YT DEMO: VR Drums](Picture)](website)
+[![YT DEMO: VR Drums](https://www.youtube.com/watch?v=mE1VXZtNNac)
+[GameSnippet](https://github.com/user-attachments/assets/84bf5da6-dc38-42b1-a386-40f37aeb0bea)
+
 
 # Instructions
 ## Set Up
-```
 1. Download Apk File 
 2. Install onto Meta Quest via SideQuest or Meta Quest Developer Hub
 3. Launch Application
-```
 
 ## User Manual
 Y/B = View reset/recenter
