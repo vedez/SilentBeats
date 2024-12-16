@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctohq5651jqow"]
+
+[ext_resource type="Script" path="res://tutorial.gd" id="1_qq74v"]
+[ext_resource type="AudioStream" uid="uid://dt444i7xgb4nt" path="res://sounds/drumtrack1.wav" id="2_v3ip3"]
+[ext_resource type="AudioStream" uid="uid://c5t7xn6jmm3wo" path="res://sounds/drumtrack2.wav" id="3_n4kpn"]
+[ext_resource type="AudioStream" uid="uid://b5kfgyds5cy2d" path="res://sounds/drumtrack3.wav" id="4_86ejg"]
+[ext_resource type="PackedScene" uid="uid://bo5qu7mf66yjd" path="res://instruments/hi_hat.tscn" id="5_uxqdu"]
+[ext_resource type="PackedScene" uid="uid://bq3c44lkqrwf6" path="res://instruments/bass_drum.tscn" id="6_jaidm"]
+[ext_resource type="PackedScene" uid="uid://bfw74mmss248e" path="res://instruments/snare_drum.tscn" id="7_6uj38"]
+[ext_resource type="PackedScene" uid="uid://cgifxso0tcsto" path="res://instruments/tom_drum.tscn" id="8_3tvvj"]
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_qq74v")
+
+[node name="TutorialLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0441346, -0.972007, 1.23247)
+text = "Drumtrack"
+font_size = 36
+
+[node name="Tracks" type="Node" parent="."]
+
+[node name="Drumtrack1" type="AudioStreamPlayer3D" parent="Tracks"]
+stream = ExtResource("2_v3ip3")
+
+[node name="Drumtrack2" type="AudioStreamPlayer3D" parent="Tracks"]
+stream = ExtResource("3_n4kpn")
+
+[node name="Drumtrack3" type="AudioStreamPlayer3D" parent="Tracks"]
+stream = ExtResource("4_86ejg")
+
+[node name="Displays" type="Node" parent="."]
+
+[node name="Display1" type="Node3D" parent="Displays"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -2, 1.8, -1.6)
+visible = false
+
+[node name="HiHat" parent="Displays/Display1" instance=ExtResource("5_uxqdu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, 0.5, -0.243696)
+
+[node name="HiHat2" parent="Displays/Display1" instance=ExtResource("5_uxqdu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.5, 0.5, -0.237)
+
+[node name="HiHat3" parent="Displays/Display1" instance=ExtResource("5_uxqdu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.5, 0.5, -0.237)
+
+[node name="HiHat4" parent="Displays/Display1" instance=ExtResource("5_uxqdu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.5, 0.5, -0.237)
+
+[node name="BassDrum" parent="Displays/Display1" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.373636)
+
+[node name="BassDrum2" parent="Displays/Display1" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39156, 0, -0.360825)
+
+[node name="BassDrum3" parent="Displays/Display1" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67045, 0, -0.360825)
+
+[node name="SnareDrum" parent="Displays/Display1" instance=ExtResource("7_6uj38")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.5, -0.206741, -0.360825)
+
+[node name="SnareDrum2" parent="Displays/Display1" instance=ExtResource("7_6uj38")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.56937, -0.206741, -0.360825)
+
+[node name="Display2" type="Node3D" parent="Displays"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -3.83492, 2.28131, -1.6)
+visible = false
+
+[node name="BassDrum" parent="Displays/Display2" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8144, -0.2, -0.373636)
+
+[node name="BassDrum2" parent="Displays/Display2" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4071, -0.2, -0.373636)
+
+[node name="BassDrum3" parent="Displays/Display2" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69668, -0.2, -0.373636)
+
+[node name="SnareDrum" parent="Displays/Display2" instance=ExtResource("7_6uj38")]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 2.7011, -0.427559, -0.274547)
+
+[node name="SnareDrum2" parent="Displays/Display2" instance=ExtResource("7_6uj38")]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 4.96063, -0.423199, -0.285715)
+
+[node name="HiHat" parent="Displays/Display2" instance=ExtResource("5_uxqdu")]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, -1, 0, 1, -2.98023e-08, 4.1799, -0.418077, 0.00281405)
+
+[node name="Display3" type="Node3D" parent="Displays"]
+transform = Transform3D(1, 0, 0, 0, 0.992082, -0.125593, 0, 0.125593, 0.992082, -3.29142, 2.46357, -2.21288)
+visible = false
+
+[node name="BassDrum" parent="Displays/Display3" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.600314, -0.2, -0.373636)
+
+[node name="BassDrum2" parent="Displays/Display3" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71399, -0.2, -0.373636)
+
+[node name="BassDrum3" parent="Displays/Display3" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80484, -0.2, -0.373636)
+
+[node name="BassDrum4" parent="Displays/Display3" instance=ExtResource("6_jaidm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90895, -0.2, -0.373636)
+
+[node name="TomDrum" parent="Displays/Display3" instance=ExtResource("8_3tvvj")]
+transform = Transform3D(1.21541, 0, 0, 0, -4.37114e-08, -1.24689, 0, 1, -5.45033e-08, 3.69247, -0.47468, -0.232559)
+
+[node name="TomDrum2" parent="Displays/Display3" instance=ExtResource("8_3tvvj")]
+transform = Transform3D(1.21541, 0, 0, 0, -4.37114e-08, -1.24689, 0, 1, -5.45033e-08, 4.11694, -0.47468, -0.232559)
+
+[node name="TomDrum3" parent="Displays/Display3" instance=ExtResource("8_3tvvj")]
+transform = Transform3D(1.21541, 0, 0, 0, -4.37114e-08, -1.24689, 0, 1, -5.45033e-08, 5.77829, -0.47468, -0.232559)
+
+[node name="TomDrum4" parent="Displays/Display3" instance=ExtResource("8_3tvvj")]
+transform = Transform3D(1.21541, 0, 0, 0, -4.37114e-08, -1.24689, 0, 1, -5.45033e-08, 6.20276, -0.47468, -0.232559)

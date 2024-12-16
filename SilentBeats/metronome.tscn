@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2xvhh0w055vu"]
+
+[ext_resource type="Script" path="res://metronome.gd" id="1_mar8x"]
+[ext_resource type="AudioStream" uid="uid://dnavx8ik1w2sj" path="res://sounds/metroclick.wav" id="2_lt65n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2hnmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8o8i"]
+
+[node name="Metronome" type="Node3D"]
+script = ExtResource("1_mar8x")
+click_sound = ExtResource("2_lt65n")
+
+[node name="MetroText" type="Label3D" parent="."]
+transform = Transform3D(1.03405, 0, 0, 0, 1.03405, 0, 0, 0, 1.03405, -0.143688, 0.000858869, -5.16772e-05)
+text = "0 BPM"
+horizontal_alignment = 0
+
+[node name="MetroIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.106128, 0, 0, 0, 0.114609, 0, 0, 0, 0.0239569, -0.278429, 0, 0)
+mesh = SubResource("BoxMesh_2hnmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_i8o8i")
+
+[node name="MetroTimer" type="Timer" parent="."]
+
+[node name="MetroPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 10
+
+[connection signal="timeout" from="MetroTimer" to="." method="_on_metro_timer_timeout"]

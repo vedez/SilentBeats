@@ -1,15 +1,11 @@
 extends XROrigin3D
 
-@export var max_distance = 0.5
+@export var max_distance = 20.0
 @export var fade_distance = 0.02
+
 
 func pose_recentered():
 	XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, false)
-	
-	
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

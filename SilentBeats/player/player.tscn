@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://yr107xxwayny"]
+[gd_scene load_steps=6 format=3 uid="uid://yr107xxwayny"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_frlpo"]
 [ext_resource type="PackedScene" uid="uid://rt0ejyp01gl4" path="res://effects/black_out.tscn" id="2_y512s"]
 [ext_resource type="PackedScene" uid="uid://da8735kk3ters" path="res://player/hand.tscn" id="3_yllr5"]
+[ext_resource type="PackedScene" uid="uid://b2xvhh0w055vu" path="res://metronome.tscn" id="4_7lut6"]
+[ext_resource type="PackedScene" uid="uid://ctohq5651jqow" path="res://tutorial.tscn" id="5_725eq"]
 
 [node name="Player" type="XROrigin3D"]
 script = ExtResource("1_frlpo")
@@ -13,6 +15,7 @@ script = ExtResource("1_frlpo")
 
 [node name="PressToCenter" type="Label3D" parent="XRCamera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+visible = false
 shaded = true
 no_depth_test = true
 render_priority = -98
@@ -22,10 +25,29 @@ text = "Press B/Y to center"
 [node name="LeftHand" parent="." instance=ExtResource("3_yllr5")]
 
 [node name="RightHand" parent="." instance=ExtResource("3_yllr5")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 tracker = &"right_hand"
 pose = &"default"
 
+[node name="Metronome" parent="." instance=ExtResource("4_7lut6")]
+transform = Transform3D(0.793285, -0.0224141, -0.608438, -0.0402733, 0.995202, -0.0891706, 0.607517, 0.0952415, 0.788576, 1.821, 0.13357, -2.03669)
+
+[node name="Tutorial" parent="." instance=ExtResource("5_725eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[connection signal="bpm_decreased" from="LeftHand" to="Metronome" method="bpm_decreased"]
 [connection signal="button_pressed" from="LeftHand" to="LeftHand" method="_on_button_pressed"]
+[connection signal="input_vector2_changed" from="LeftHand" to="LeftHand" method="_on_input_vector_2_changed"]
+[connection signal="metro_enabled" from="LeftHand" to="Metronome" method="metro_enabled"]
 [connection signal="pose_recentered" from="LeftHand" to="." method="pose_recentered"]
+[connection signal="stick_left" from="LeftHand" to="Tutorial" method="_on_stick_left"]
+[connection signal="stick_right" from="LeftHand" to="Tutorial" method="_on_stick_right"]
+[connection signal="tutorial_enabled" from="LeftHand" to="Tutorial" method="_on_tutorial_enabled"]
+[connection signal="bpm_increased" from="RightHand" to="Metronome" method="bpm_increased"]
 [connection signal="button_pressed" from="RightHand" to="RightHand" method="_on_button_pressed"]
+[connection signal="input_vector2_changed" from="RightHand" to="RightHand" method="_on_input_vector_2_changed"]
+[connection signal="metro_enabled" from="RightHand" to="Metronome" method="metro_enabled"]
 [connection signal="pose_recentered" from="RightHand" to="." method="pose_recentered"]
+[connection signal="stick_left" from="RightHand" to="Tutorial" method="_on_stick_left"]
+[connection signal="stick_right" from="RightHand" to="Tutorial" method="_on_stick_right"]
+[connection signal="tutorial_enabled" from="RightHand" to="Tutorial" method="_on_tutorial_enabled"]

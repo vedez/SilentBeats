@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://smcl3he38rll"]
+
+[ext_resource type="Script" path="res://instruments/frog_2.gd" id="1_ow4fl"]
+[ext_resource type="AudioStream" uid="uid://bobhao14kcbgl" path="res://sounds/frog1.wav" id="2_1eq4c"]
+[ext_resource type="PackedScene" uid="uid://bcrowc71d678i" path="res://materials/Floor Assets/Extras/Frog.glb" id="3_bu11o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2v8p0"]
+radius = 0.4
+
+[node name="Frog2" type="StaticBody3D"]
+script = ExtResource("1_ow4fl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1eq4c")
+
+[node name="Frog2" parent="." instance=ExtResource("3_bu11o")]
+transform = Transform3D(3, 0, 0, 0, 5.24799, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127334, 0.033085, 0)
+shape = SubResource("SphereShape3D_2v8p0")

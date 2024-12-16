@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq3c44lkqrwf6"]
+
+[ext_resource type="PackedScene" uid="uid://dv61cfyg2yw5b" path="res://instruments/instrument.tscn" id="1_5qtmp"]
+[ext_resource type="AudioStream" uid="uid://ciehwm7ccqwjk" path="res://sounds/bassdrum.wav" id="2_72hvf"]
+[ext_resource type="PackedScene" uid="uid://c4p5glm3tpocl" path="res://materials/Mushrooms/Mushroom (2).glb" id="3_re43o"]
+
+[sub_resource type="Curve" id="Curve_6h8cn"]
+min_value = -80.0
+max_value = 80.0
+_data = [Vector2(0, -63.1153), 0.0, 310.882, 0, 0, Vector2(0.998773, 80), -9.71496, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnbpl"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7neni"]
+height = 0.1
+radius = 0.25
+
+[node name="BassDrum" instance=ExtResource("1_5qtmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+strike_sound = ExtResource("2_72hvf")
+strike_volume_curve = SubResource("Curve_6h8cn")
+
+[node name="DrumMesh" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.250604, 0)
+visible = false
+mesh = SubResource("CylinderMesh_vnbpl")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.247672, 0.0270931)
+shape = SubResource("CylinderShape3D_7neni")
+
+[node name="Root Scene" parent="." index="3" instance=ExtResource("3_re43o")]
+transform = Transform3D(0.780657, 0, 0, 0, 0.0902481, -0.768008, 0, 0.552442, 0.125464, 0, -0.292018, -0.22636)

@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://da8735kk3ters"]
+[gd_scene load_steps=8 format=3 uid="uid://da8735kk3ters"]
 
 [ext_resource type="Script" path="res://player/hand.gd" id="1_0sunj"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_w5k0n"]
-top_radius = 0.01
-bottom_radius = 0.01
-height = 0.4
-radial_segments = 16
-rings = 1
+[ext_resource type="Script" path="res://player/drum_stick_body.gd" id="2_a2p50"]
+[ext_resource type="AudioStream" uid="uid://c6abo3phnriyr" path="res://sounds/drumstick.wav" id="3_ida5p"]
+[ext_resource type="PackedScene" uid="uid://bfp5023fwp7p" path="res://materials/Drumsticks/Tree branch.glb" id="4_iloy1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wir3l"]
 margin = 0.005
-radius = 0.01
-height = 0.4
+radius = 0.006
+height = 0.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pjk7"]
+radius = 0.005
+height = 0.008
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh4b6"]
+albedo_color = Color(0.220367, 1, 0.154297, 1)
 
 [node name="Hand" type="XRController3D"]
 tracker = &"left_hand"
@@ -23,12 +26,20 @@ script = ExtResource("1_0sunj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 
 [node name="DrumStickBody" type="CharacterBody3D" parent="Anchor"]
+script = ExtResource("2_a2p50")
+strike_sound = ExtResource("3_ida5p")
 
-[node name="Drumstick" type="MeshInstance3D" parent="Anchor/DrumStickBody"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_w5k0n")
-skeleton = NodePath("../../..")
+[node name="Tree branch" parent="Anchor/DrumStickBody" instance=ExtResource("4_iloy1")]
+transform = Transform3D(1, 0, 0, 0, -1.48488e-07, 1, 0, -3.397, -4.37114e-08, -1.27107e-05, 0, 0.0113494)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/DrumStickBody"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.00435, -0.0428149, 1.8715e-09, 0, -4.39416e-08, -1.00527, 0.0428149, 1.00435, -4.39017e-08, 9.83886e-05, 0.0018128, -0.00210877)
 shape = SubResource("CapsuleShape3D_wir3l")
+
+[node name="Drumtip" type="MeshInstance3D" parent="Anchor/DrumStickBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00570288, 0.00131864, -0.146552)
+mesh = SubResource("SphereMesh_8pjk7")
+surface_material_override/0 = SubResource("StandardMaterial3D_dh4b6")
+
+[node name="StrikePlayer3D" type="AudioStreamPlayer3D" parent="Anchor/DrumStickBody"]
+max_polyphony = 10

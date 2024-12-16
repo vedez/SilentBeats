@@ -1,4 +1,5 @@
 extends Node
+# Code source: https://github.com/godotengine/godot-demo-projects/pull/977/files#diff-89518f6d1c5e7063b519ae83cbe063f5ee4297205ee7fdd9f62bb7327d4c16d2
 
 signal focus_lost
 signal focus_gained
@@ -82,7 +83,7 @@ func _on_openxr_visible_state() -> void:
 		emit_signal("focus_lost")
 
 
-# Handle OpenXR focused state
+# handle OpenXR focused state
 func _on_openxr_focused_state() -> void:
 	print("OpenXR gained focus")
 	xr_is_focussed = true
@@ -92,13 +93,13 @@ func _on_openxr_focused_state() -> void:
 
 	emit_signal("focus_gained")
 
-# Handle OpenXR stopping state
+# handle OpenXR stopping state
 func _on_openxr_stopping() -> void:
 	# Our session is being stopped.
 	print("OpenXR is stopping")
 
-# Handle OpenXR pose recentered signal
+# handle OpenXR pose recentered signal
 func _on_openxr_pose_recentered() -> void:
-	# User recentered view, we have to react to this by recentering the view.
+	# user recentered view - to react to this by recentering the view
 	# This is game implementation dependent.
 	emit_signal("pose_recentered")

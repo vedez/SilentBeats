@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dv61cfyg2yw5b" path="res://instruments/instrument.tscn" id="1_sqwa1"]
 [ext_resource type="AudioStream" uid="uid://t07d3sgbxbnj" path="res://sounds/floortom.wav" id="2_4vc45"]
+[ext_resource type="PackedScene" uid="uid://b2m1uy4px007l" path="res://materials/Mushrooms/Mushroom (1).glb" id="3_qakbr"]
 
 [sub_resource type="Curve" id="Curve_6h8cn"]
 min_value = -80.0
@@ -10,17 +11,12 @@ _data = [Vector2(0, -63.1153), 0.0, 310.882, 0, 0, Vector2(0.998773, 80), -9.714
 point_count = 2
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vnbpl"]
-top_radius = 0.25
-bottom_radius = 0.25
+top_radius = 0.22
+bottom_radius = 0.22
 height = 0.5
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7neni"]
-height = 0.1
-radius = 0.25
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_243xs"]
-height = 0.47
-radius = 0.26
+[sub_resource type="SphereShape3D" id="SphereShape3D_cv8bp"]
+radius = 0.22
 
 [node name="FloorTomDrum" instance=ExtResource("1_sqwa1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -29,13 +25,12 @@ strike_volume_curve = SubResource("Curve_6h8cn")
 
 [node name="DrumMesh" type="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+visible = false
 mesh = SubResource("CylinderMesh_vnbpl")
 
 [node name="CollisionShape3D" parent="." index="1"]
-shape = SubResource("CylinderShape3D_7neni")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00723076, -0.15516, 0.00795408)
+shape = SubResource("SphereShape3D_cv8bp")
 
-[node name="OuterBody" type="StaticBody3D" parent="." index="3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterBody" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.207704, 0)
-shape = SubResource("CylinderShape3D_243xs")
+[node name="Mushroom (1)" parent="." index="3" instance=ExtResource("3_qakbr")]
+transform = Transform3D(0.0353892, -0.00584062, 0.0341009, 0.0103143, 0.0332913, 0.00170838, -0.0342946, 0.00398554, 0.0357031, 0.0172018, -0.274681, -0.0151036)

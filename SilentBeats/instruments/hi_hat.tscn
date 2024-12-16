@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo5qu7mf66yjd"]
+
+[ext_resource type="PackedScene" uid="uid://dv61cfyg2yw5b" path="res://instruments/instrument.tscn" id="1_i8vmf"]
+[ext_resource type="AudioStream" uid="uid://rr662d5epmw2" path="res://sounds/hi-hat.ogg" id="2_k1h7y"]
+[ext_resource type="PackedScene" uid="uid://ct77gcw316tfq" path="res://materials/Mushrooms/Myca.glb" id="3_g6xcf"]
+
+[sub_resource type="Curve" id="Curve_6h8cn"]
+min_value = -80.0
+max_value = 80.0
+_data = [Vector2(0, -63.1153), 0.0, 310.882, 0, 0, Vector2(0.998773, 80), -9.71496, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnbpl"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hufli"]
+albedo_color = Color(0.505882, 0.356863, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wxgx6"]
+radius = 0.28
+
+[node name="HiHat" instance=ExtResource("1_i8vmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+strike_sound = ExtResource("2_k1h7y")
+strike_volume_curve = SubResource("Curve_6h8cn")
+
+[node name="HihatMesh" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.5534, -0.370107, -0.744809, 0.156743, 1.10907, -0.272626, 0.726444, 0.042642, 0.626213, -0.024151, 0.00404225, 0.0255484)
+visible = false
+mesh = SubResource("CylinderMesh_vnbpl")
+surface_material_override/0 = SubResource("StandardMaterial3D_hufli")
+
+[node name="HihatMesh2" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.5534, -0.370107, -0.744809, 0.156743, 1.10907, -0.272626, 0.726444, 0.042642, 0.626213, -0.0193109, -0.0110217, 0.0248519)
+visible = false
+mesh = SubResource("CylinderMesh_vnbpl")
+skeleton = NodePath("../HihatMesh")
+surface_material_override/0 = SubResource("StandardMaterial3D_hufli")
+
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029373, -0.214743, -0.0274351)
+shape = SubResource("SphereShape3D_wxgx6")
+
+[node name="StrikePlayer3D" parent="." index="3"]
+transform = Transform3D(0.596885, -0.316185, -0.737397, 0.170713, 0.948078, -0.268339, 0.783955, 0.0342841, 0.61987, -0.0283003, 0.0169561, 0.0261454)
+
+[node name="Myca" parent="." index="4" instance=ExtResource("3_g6xcf")]
+transform = Transform3D(0.094845, 0.00957546, -0.135782, 1.26941e-09, 0.113875, 0.018145, 0.12356, -0.00735017, 0.104227, 0.0321768, -0.182618, -0.032963)
