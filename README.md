@@ -1,5 +1,6 @@
 # Project About
 **Project Name:** Silent Beats
+
 **Description:**
 This project develops a virtual reality simulator for playing drums, aimed at providing drummers with a realistic practice environment without the need for a physical drum kit. The VR Drum Simulator replicates the experience of playing a traditional drum set, including accurate sound production and dynamic response to stick movements, enabling users to practice quietly and without taking up physical space. This tool is ideal for drummers looking to practice at any time without causing noise disruptions.
 
